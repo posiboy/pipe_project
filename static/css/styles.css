@@ -11,3 +11,18 @@ body {
     margin-top: 150px;
     padding-top: 100px;
 }
+
+.custom-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#login {
+    margin-top: 100px;
+}
+
+#register {
+    margin-top: 50px;
+}
