@@ -1,10 +1,29 @@
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import DeclarativeBase
 from forms import LoginForm, UploadForm, RegisterForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '123456789'
 Bootstrap5(app)
+
+
+# Database Initialization
+# CREATE DATABASE
+class Base(DeclarativeBase):
+    pass
+
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+db = SQLAlchemy(model_class=Base)
+db.init_app(app)
+
+# CONFIGURE TABLES
+# TODO: Create Table objects
+
+with app.app_context():
+    db.create_all()
 
 
 @app.route('/')
