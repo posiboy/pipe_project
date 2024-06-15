@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
-from forms import LoginForm, UploadForm
+from forms import LoginForm, UploadForm, RegisterForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '123456789'
@@ -26,6 +26,14 @@ def upload():
     if upload_form.validate_on_submit():
         pass
     return render_template('upload.html', form=upload_form)
+
+
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    register_form = RegisterForm()
+    if register_form.validate_on_submit():
+        pass
+    return render_template('register.html', form=register_form)
 
 
 if __name__ == '__main__':

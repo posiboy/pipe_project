@@ -4,8 +4,7 @@
 {% block title %} Login {% endblock %}
 
 {% block content %}
-    <div class="col-lg-8 col-md-10 mx-auto custom-container hero">
-    <!-- <h3>Please sign in</h3> -->
+    <div class="col-lg-8 col-md-10 mx-auto custom-container hero" id="register">
         {{ render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
     </div>
 
