@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    {% block styles %}
+    <!-- Bootstrap-Flask CSS -->
+        {{ bootstrap.load_css() }}
+    <!-- Link to styles.css-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    {% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+    
+  </head>
+  <body>
+    <!-- Navbar -->
+    <div class="container">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+          <div class="col-md-3 mb-2 mb-md-0">
+            <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+              <!-- Logo -->
+               <img src="{{ url_for('static', filename='assets/img/retro-a.jpg') }}" alt="retro-a logo" id="logo">
+            </a>
+          </div>
+    
+          <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="{{ url_for('home') }}" class="nav-link px-2 link-secondary">Home</a></li>
+            <li><a href="#" class="nav-link px-2">Blog</a></li>
+            <!-- <li><a href="#" class="nav-link px-2">Pricing</a></li>
+            <li><a href="#" class="nav-link px-2">FAQs</a></li> -->
+            <li><a href="#" class="nav-link px-2">About</a></li>
+          </ul>
+    
+          <div class="col-md-3 text-end">
+            <a class="btn btn-outline-primary me-2" href="{{ url_for('login') }}">Login</a>
+            <a class="btn btn-primary" href="{{ url_for('login') }}">Sign Up</a>
+          </div>
+        </header>
+    </div>
+    {% block content %}{% endblock %}
+
+    <!-- Footer -->
+    <!-- <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+              <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+                <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+              </a>
+              <span class="mb-3 mb-md-0 text-body-secondary">© 2024 Retro A</span>
+            </div>
+        
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+              <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
+              <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
+              <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+            </ul>
+        </footer>
+    </div> -->
+    {% block scripts %}
+        {{ bootstrap.load_js() }}
+    {% endblock %}
+</body>
