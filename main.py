@@ -1,7 +1,9 @@
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import DeclarativeBase
+from flask_login import UserMixin
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy import Integer, String
 from forms import LoginForm, UploadForm, RegisterForm
 
 app = Flask(__name__)
@@ -19,10 +21,19 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 
+
 # CONFIGURE TABLES
-# TODO: Create Table objects
+# ----- Table for user accounts ----- #
+class User(UserMixin, db.Model):
+    __tablename__ = "users"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    email: Mapped[str] = mapped_column(String(100), unique=True)
+    password: Mapped[str] = mapped_column(String(100))
+    name: Mapped[str] = mapped_column(String(250))
+
 
 with app.app_context():
+    # Create any new tables (does not affect or update existing tables)
     db.create_all()
 
 
