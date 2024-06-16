@@ -1,7 +1,6 @@
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import UserMixin
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String
 from forms import LoginForm, UploadForm, RegisterForm
@@ -24,7 +23,7 @@ db.init_app(app)
 
 # CONFIGURE TABLES
 # ----- Table for user accounts ----- #
-class User(UserMixin, db.Model):
+class User(db.Model):
     __tablename__ = "users"
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     email: Mapped[str] = mapped_column(String(100), unique=True)
