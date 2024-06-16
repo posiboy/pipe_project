@@ -105,5 +105,11 @@ def show_posts():
     pass
 
 
+@app.route('/about')
+def about():
+    # TODO: Display about page
+    return render_template('about.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)
