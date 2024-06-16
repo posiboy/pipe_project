@@ -97,5 +97,11 @@ def register():
     return render_template('register.html', form=register_form)
 
 
+@app.route('/blog')
+def show_posts():
+    # TODO: Show all existing uploads
+    pass
+
+
 if __name__ == '__main__':
     app.run(debug=True)
