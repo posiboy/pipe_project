@@ -46,6 +46,7 @@ def home():
 def login():
     login_form = LoginForm()
     if login_form.validate_on_submit():
+        # TODO: Create functionality
         pass
     return render_template('login.html', form=login_form)
 
