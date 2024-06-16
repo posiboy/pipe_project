@@ -4,8 +4,19 @@
 {% block title %} Login {% endblock %}
 
 {% block content %}
-    <div class="col-lg-8 col-md-10 mx-auto custom-container hero" id="register">
-        {{ render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+    <div class="custom-container hero" id="register">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              <ul>
+              {% for message in messages %}
+                <li id="flash">{{ message }}</li>
+              {% endfor %}
+              </ul>
+            {% endif %}
+        {% endwith %}
+        <div class="col-lg-8 col-md-10 mx-auto custom-container">
+            {{ render_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+        </div>
     </div>
 
 {% endblock %}
