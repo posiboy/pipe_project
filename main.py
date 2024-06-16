@@ -55,6 +55,8 @@ def login():
 def upload():
     upload_form = UploadForm()
     if upload_form.validate_on_submit():
+        # TODO: Create functionality for uploads
+        # Images, descriptions, ...
         pass
     return render_template('upload.html', form=upload_form)
 
