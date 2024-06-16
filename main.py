@@ -86,12 +86,13 @@ def register():
         new_user = User(
             name=register_form.name.data,
             email=register_form.email.data,
-            password=hashed_password
+            password=hashed_password,
         )
 
         # Add the user to the database
         db.session.add(new_user)
         db.session.commit()
+        # TODO: Update link to show blog (posts)
         return redirect(url_for('home'))
     return render_template('register.html', form=register_form)
 
