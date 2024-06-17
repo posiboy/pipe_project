@@ -47,7 +47,6 @@ def home():
 def login():
     login_form = LoginForm()
     if login_form.validate_on_submit():
-        # TODO: Create functionality
         email = login_form.email.data
         password = login_form.password.data
 
