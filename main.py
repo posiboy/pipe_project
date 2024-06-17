@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import login_user
 from forms import LoginForm, UploadForm, RegisterForm
 
 app = Flask(__name__)
@@ -46,8 +47,21 @@ def home():
 def login():
     login_form = LoginForm()
     if login_form.validate_on_submit():
-        # TODO: Create functionality
-        pass
+        email = login_form.email.data
+        password = login_form.password.data
+
+        # Check if user exists in database
+        user = db.session.execute(db.Select(User).where(User.email == email)).scalar()
+        if not user:
+            flash('Email does not exist!')
+        # Check if the password entered by the user is correct
+        elif not check_password_hash(user.password, password):
+            flash("Password incorrect! Please try again.")
+            return redirect(url_for('login'))
+        else:
+            # If the details are correct, log the user in
+            # login_user(user)
+            return redirect(url_for('home'))
     return render_template('login.html', form=login_form)
 
 
